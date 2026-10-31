@@ -6,14 +6,9 @@ client. One paste to deploy, one command to chat.
 
 [![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/droplets/new?image=ubuntu-24-04-x64&size=s-8vcpu-16gb-amd)
 
-```
- ██████╗ ███████╗███╗   ███╗███╗   ███╗ █████╗
-██╔════╝ ██╔════╝████╗ ████║████╗ ████║██╔══██╗
-██║  ███╗█████╗  ██╔████╔██║██╔████╔██║███████║
-██║   ██║██╔══╝  ██║╚██╔╝██║██║╚██╔╝██║██╔══██║
-╚██████╔╝███████╗██║ ╚═╝ ██║██║ ╚═╝ ██║██║  ██║
- ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝
-```
+<p align="center">
+  <img src="assets/banner.svg" width="620" alt="gemma in the terminal: GEMMA in crimson block letters, Ultra Uncensored · Heretic, a you › prompt waiting">
+</p>
 
 ## What you get
 
@@ -172,6 +167,7 @@ src/main.rs             the terminal client (Rust); `cargo install` builds it in
 Cargo.toml              the package (binary name `gemma`)
 install/setup.sh        what the droplet runs on first boot; also safe to run by hand as root
 install/cloud-init.yaml the one-paste deploy file (fetches setup.sh and runs it, logged)
+assets/                 the README banner (SVG) and the GitHub social preview card
 ```
 
 ## License
