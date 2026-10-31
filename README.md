@@ -4,6 +4,8 @@ Run **Gemma 4 Ultra Uncensored (Heretic)** on a cheap DigitalOcean CPU droplet �
 private OpenAI-compatible API, and talk to it from your terminal with a zero-dependency chat
 client. One paste to deploy, one command to chat.
 
+[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/droplets/new?image=ubuntu-24-04-x64&size=s-8vcpu-16gb-amd)
+
 ```
  ██████╗ ███████╗███╗   ███╗███╗   ███╗ █████╗
 ██╔════╝ ██╔════╝████╗ ████║████╗ ████║██╔══██╗
@@ -46,9 +48,21 @@ prevents it.
 
 ## Deploy
 
-You need a [DigitalOcean](https://www.digitalocean.com/) account and an SSH key added to it.
+[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/droplets/new?image=ubuntu-24-04-x64&size=s-8vcpu-16gb-amd)
 
-### Option A — one command (`doctl`)
+You need a [DigitalOcean](https://www.digitalocean.com/) account with an SSH key added to it.
+
+### With the button (control panel, one paste)
+
+1. Click the button. It opens **Create Droplet** with **Ubuntu 24.04** and the **8 vCPU / 16 GB**
+   size pre-selected; pick the region nearest you and your SSH key.
+2. Open **Advanced Options → Add Initialization scripts (free)** and paste
+   [`install/cloud-init.yaml`](https://raw.githubusercontent.com/bobvasic/gemma-uncensored/main/install/cloud-init.yaml)
+   (that link is the raw file — select all, copy).
+3. Click **Create Droplet**. That is everything: the droplet downloads the model, builds the
+   server, generates your keys and starts serving on its own (~15–20 min).
+
+### With `doctl` (one command)
 
 ```bash
 git clone https://github.com/bobvasic/gemma-uncensored.git && cd gemma-uncensored
@@ -58,16 +72,10 @@ doctl compute droplet create gemma \
   --user-data-file install/cloud-init.yaml --wait
 ```
 
-Pick any region; `s-8vcpu-16gb-amd` is the cheapest size with 16 GB of RAM. Larger CPU
+Any region works. `s-8vcpu-16gb-amd` (~$120/mo) is the recommended size: 16 GB is the floor
+for this model, and the Premium AMD variant has newer CPUs. The regular `s-8vcpu-16gb`
+(~$96/mo) also fits but has an older CPU, so expect fewer tokens per second. Bigger CPU
 sizes are faster.
-
-### Option B — the control panel (one paste)
-
-1. [Create a Droplet](https://cloud.digitalocean.com/droplets/new?image=ubuntu-24-04-x64&size=s-8vcpu-16gb-amd&region=lon1)
-   (the link pre-selects what it can; confirm **Ubuntu 24.04**, a **16 GB+** size, and your SSH key).
-2. Under **Advanced Options**, tick **Add Initialization scripts (free)** and paste the
-   contents of [`install/cloud-init.yaml`](install/cloud-init.yaml).
-3. Create. The droplet installs itself on first boot.
 
 ### Then: get your keys
 
