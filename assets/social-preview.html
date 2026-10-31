@@ -1,0 +1,57 @@
+<!doctype html>
+<!--
+  GitHub social preview card, 1280x640. Render with:
+    google-chrome --headless=new --disable-gpu --hide-scrollbars --window-size=1280,640 \
+      --force-device-scale-factor=1 --user-data-dir=/tmp/chrome-sp --no-first-run \
+      --screenshot=assets/social-preview.png file://$PWD/assets/social-preview.html
+  Fonts: DejaVu Sans Mono (box-drawing glyphs) + any clean sans. No network needed.
+-->
+<html lang="en"><head><meta charset="utf-8"><title>gemma-uncensored</title>
+<style>
+  html, body { margin: 0; width: 1280px; height: 640px; overflow: hidden; background: #07040a; }
+  .card {
+    position: relative; width: 1280px; height: 640px; overflow: hidden;
+    background:
+      radial-gradient(900px 520px at 16% 112%, rgba(176, 12, 32, .38), transparent 62%),
+      radial-gradient(760px 440px at 94% -12%, rgba(255, 58, 48, .20), transparent 62%),
+      linear-gradient(180deg, #0c0609 0%, #07040a 100%);
+    font-family: "Inter", "Ubuntu", "Noto Sans", "DejaVu Sans", sans-serif; color: #ece2e4;
+  }
+  .card::after {           /* faint scanlines: a nod to the terminal client */
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 4px);
+  }
+  .edge { position: absolute; left: 0; top: 0; width: 100%; height: 6px;
+    background: linear-gradient(90deg, #4a000c, #b00c20 50%, #ff3a30); }
+  .art {
+    position: absolute; left: 96px; top: 112px; margin: 0;
+    font-family: "DejaVu Sans Mono", "Noto Sans Mono", monospace; font-size: 34px; line-height: 1.02;
+    white-space: pre;
+    background: linear-gradient(90deg, #5c0010 0%, #b00c20 48%, #ff3a30 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255, 40, 40, .26));
+  }
+  .tag { position: absolute; left: 100px; top: 356px; font-size: 21px; letter-spacing: .44em;
+    text-transform: uppercase; color: #c42440; font-weight: 600; }
+  .pitch { position: absolute; left: 100px; top: 404px; font-size: 30px; line-height: 1.36;
+    color: #f3ebec; font-weight: 500; max-width: 1090px; }
+  .pitch b { color: #ffffff; font-weight: 700; }
+  .chips { position: absolute; left: 100px; bottom: 66px; display: flex; gap: 14px; }
+  .chip { font-size: 18px; padding: 9px 18px; border-radius: 999px; letter-spacing: .02em;
+    color: #f4caca; background: rgba(120, 10, 25, .26); border: 1px solid rgba(255, 80, 80, .36); }
+  .repo { position: absolute; right: 96px; bottom: 76px; font-size: 18px; color: #8d6f75;
+    font-family: "DejaVu Sans Mono", monospace; letter-spacing: .02em; }
+</style></head>
+<body><div class="card">
+<div class="edge"></div>
+<pre class="art"> ██████╗ ███████╗███╗   ███╗███╗   ███╗ █████╗
+██╔════╝ ██╔════╝████╗ ████║████╗ ████║██╔══██╗
+██║  ███╗█████╗  ██╔████╔██║██╔████╔██║███████║
+██║   ██║██╔══╝  ██║╚██╔╝██║██║╚██╔╝██║██╔══██║
+╚██████╔╝███████╗██║ ╚═╝ ██║██║ ╚═╝ ██║██║  ██║
+ ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝</pre>
+<div class="tag">Ultra Uncensored · Heretic</div>
+<div class="pitch"><b>Gemma 4 (26B)</b>, uncensored, on a <b>$4/day</b> DigitalOcean CPU droplet.<br>One paste to deploy. One command to chat.</div>
+<div class="chips"><span class="chip">No GPU</span><span class="chip">OpenAI-compatible API</span><span class="chip">Rust terminal chat</span></div>
+<div class="repo">github.com/bobvasic/gemma-uncensored</div>
+</div></body></html>
