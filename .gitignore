@@ -1,0 +1,14 @@
+# Private operational notes (live droplet IDs, IPs, API keys). Never commit.
+PRIVATE-NOTES.md
+
+# Local agent / editor state
+.commandcode/
+.vscode/
+.idea/
+
+# Rust build output
+target/
+
+# Archives and scratch
+*.tar.gz
+*.log

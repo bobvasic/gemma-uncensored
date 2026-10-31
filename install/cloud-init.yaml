@@ -1,0 +1,26 @@
+#cloud-config
+# gemma-uncensored — one-paste deploy.
+#
+# Use it one of two ways:
+#   1. DigitalOcean control panel: Create Droplet -> Ubuntu 24.04 -> a 16 GB+ CPU size
+#      (s-8vcpu-16gb-amd recommended) -> Advanced Options -> "Add Initialization scripts
+#      (free)" -> paste this whole file -> Create.
+#   2. doctl:
+#      doctl compute droplet create gemma --region lon1 --size s-8vcpu-16gb-amd \
+#        --image ubuntu-24-04-x64 --ssh-keys <your-ssh-key-id> \
+#        --user-data-file install/cloud-init.yaml --wait
+#
+# The droplet installs everything on its first boot: ~15-20 minutes (13.9 GB model download
+# plus a llama.cpp build). Then:
+#   progress : ssh root@<ip> tail -f /var/log/gemma-install.log
+#   finished : ssh root@<ip> cat /root/GEMMA-READY.txt      (base URL + your two API keys)
+#
+# Optional knobs: uncomment and edit the env line below.
+#   GEMMA_CTX=32768  GEMMA_PORT=8080  GEMMA_BIND=0.0.0.0 (127.0.0.1 = private, SSH tunnel)
+package_update: true
+packages:
+  - curl
+runcmd:
+  - [ bash, -c, "curl -fsSL https://raw.githubusercontent.com/bobvasic/gemma-uncensored/main/install/setup.sh -o /root/setup.sh" ]
+  # - [ bash, -c, "echo 'GEMMA_CTX=32768 GEMMA_PORT=8080 GEMMA_BIND=0.0.0.0' > /root/gemma.env" ]
+  - [ bash, -c, "set -a; [ -f /root/gemma.env ] && . /root/gemma.env; set +a; bash /root/setup.sh > /var/log/gemma-install.log 2>&1" ]
